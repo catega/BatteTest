@@ -64,7 +64,7 @@ public class Character {
 
 	@Override
 	public String toString() {
-		return "[" + this.getName() + " - HP: " + this.getHealth() +  " | At: " + this.getAttack() + " | Def: " + this.getDefense() + "]";
+		return "[" + this.getName() + " - HP: " + this.getHealth() +  " | At: " + this.getAttack() + " | Def: " + this.getDefense() + " | Spd: " + this.getSpeed() + "]";
 	}
 	
 	

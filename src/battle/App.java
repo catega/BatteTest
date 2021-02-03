@@ -22,8 +22,8 @@ public class App {
 		Character c4 = new Character("Char 4");
 		charsP2.add(c4);
 		
-		c4.setAttack(10);
-		c4.setDefense(10);
+		/*c4.setAttack(10);
+		c4.setDefense(10);*/
 		
 		Player p1 = new Player("Player 1", charsP1);
 		Player p2 = new Player("Player 2", charsP2);
@@ -34,18 +34,26 @@ public class App {
 		battle(p1, p2);
 	}
 	
+	static public boolean dodge(Character a) {
+		return (int)(Math.random() * 100) <= (a.getSpeed() * 5) ? true : false;
+	}
+	
 	// No fa falta tornar un int, era per a test
 	static public int round(Character a, Character b) {
-		if ((a.getAttack() + 10) < b.getDefense()) {
-			b.getDamage(1);
-			return 1;
-		}else 
-			b.getDamage((a.getAttack() + 10) - b.getDefense());
+		if (!dodge(b)){
+			if ((a.getAttack() + 10) < b.getDefense()) {
+				b.getDamage(1);
+				return 1;
+			}else 
+				b.getDamage((a.getAttack() + 10) - b.getDefense());
+			
+			if (b.getHealth() < 0)
+				b.setHealth(0);
+			
+			return (a.getAttack() + 10) - b.getDefense();
+		}
 		
-		if (b.getHealth() < 0)
-			b.setHealth(0);
-		
-		return (a.getAttack() + 10) - b.getDefense();
+		return 0;
 	}
 	
 	
